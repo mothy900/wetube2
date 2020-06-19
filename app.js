@@ -3,16 +3,19 @@ import morgan from "morgan";
 import helmet from "helmet";
 import cookirparser from "cookie-parser";
 import bodyparser from "body-parser";
-const app = express();
+import { userRouter } from "./router";
 
+const app = express();
+/*
 const PORT = 4000;
 const handleListening = () =>
-  console.log(`Listening on: http://localhost:${PORT}`);
+  console.log(`Listening on: http://localhost:${PORT}`);*/
 
-const handleHoem = (req, res, next) => res.send("Hello from My ass");
+const handleHoem = (req, res) => res.send("Hello from My ass");
 
-const handleProfile = (req, res, next) => res.send("You are on my Profile");
+const handleProfile = (req, res) => res.send("You are on my Profile");
 
+///////////////////////////middleware 방법
 app.use(cookirparser());
 app.use(bodyparser.json()); //bodyParser.urlencoded 정보를 받는 방법
 app.use(bodyparser.urlencoded({ extended: true })); //bodyParser.urlencoded 정보를 받는 방법
@@ -24,4 +27,8 @@ app.get("/", handleHoem); //request
 
 app.get("/profile", handleProfile);
 
-app.listen(PORT, handleListening);
+app.use("/user", userRouter);
+/*
+app.listen(PORT, handleListening);*/
+
+export default app;
