@@ -1,15 +1,14 @@
-import { query } from "express";
-
-export const home = (req, res) => res.render("home", { pageTitle: "Home" });
+import routes from "../routes";
+import { videos } from "../db";
+export const home = (req, res) =>
+  res.render("home", { pageTitle: "Home", videos });
 export const search = (req, res) => {
   const {
     query: { term: searchingBy },
   } = req;
   // const searchingBy = req.query.term; 와 같은 결과
-  res.render("search", { pageTitle: "Search", searchingBy });
+  res.render("search", { pageTitle: "Search", searchingBy, videos });
 };
-export const videos = (req, res) => res.render("Video", { pageTitle: "Video" });
-
 export const upload = (req, res) =>
   res.render("Upload", { pageTitle: "Upload" });
 
