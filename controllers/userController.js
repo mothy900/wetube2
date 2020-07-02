@@ -22,8 +22,12 @@ export const postlogin = (req, res) => {
   res.redirect(routes.home);
 };
 
-export const logout = (req, res) =>
-  res.render("logout", { pageTitle: "Log out" });
+export const logout = (req, res) => {
+  //To do process Logout
+  res.redirect(routes.home);
+  //if you want you can make alert window "Are you sure Logout this page?"
+};
+
 export const userDetail = (req, res) =>
   res.render("userDetail", { pageTitle: "User Detail" });
 export const editProfile = (req, res) =>
