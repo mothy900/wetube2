@@ -1,5 +1,5 @@
-import routes from "../routes";
 import Video from "../models/Video";
+import routes from "../routes";
 export const home = async (req, res) => {
   try {
     const videos = await Video.find({}).sort({ _id: -1 });
@@ -9,10 +9,18 @@ export const home = async (req, res) => {
     res.render("home", { pageTitle: "Home", videos: [] });
   }
 };
-export const search = (req, res) => {
+export const search = async (req, res) => {
   const {
     query: { term: searchingBy },
   } = req;
+  let videos = [];
+  try {
+    videos = await Video.find({
+      title: { $regex: searchingBy, $options: "i" },
+    });
+  } catch (error) {
+    console.log(error);
+  }
   // const searchingBy = req.query.term; 와 같은 결과
   res.render("search", { pageTitle: "Search", searchingBy, videos });
 };
