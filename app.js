@@ -22,6 +22,7 @@ const handleProfile = (req, res) => res.send("You are on my Profile");
 app.use(helmet());
 app.set("view engine", "pug");
 app.use("/uploads", express.static("uploads")); //directory에서 file을 보내주는 middleWare function
+app.use("/static", express.static("static"));
 app.use(cookirparser());
 app.use(bodyparser.json()); //bodyParser.urlencoded 정보를 받는 방법
 app.use(bodyparser.urlencoded({ extended: true })); //bodyParser.urlencoded 정보를 받는 방법
