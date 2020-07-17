@@ -4,10 +4,12 @@ import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import { localsMiddleware } from "./middlewares";
+import routes from "./routes";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
-import routes from "./routes";
+import apiRouter from "./routers/apiRouter";
+
 const app = express();
 /*
 const PORT = 4000;
@@ -37,6 +39,7 @@ app.get("/profile", handleProfile);*/
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
+app.use(routes.api, apiRouter);
 //app.use("/user", userRouter);
 /*
 app.listen(PORT, handleListening);*/
